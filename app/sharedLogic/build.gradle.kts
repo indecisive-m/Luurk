@@ -1,8 +1,11 @@
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
+import org.jetbrains.kotlin.gradle.internal.types.error.ErrorModuleDescriptor.platform
 
 plugins {
     alias(libs.plugins.kotlinMultiplatform)
     alias(libs.plugins.androidMultiplatformLibrary)
+    alias(libs.plugins.koin.compiler)
+
 }
 
 kotlin {
@@ -46,13 +49,26 @@ kotlin {
     sourceSets {
         commonMain.dependencies {
             api(project(":core"))
+            implementation(libs.koin.core)
+            implementation(project.dependencies.platform(libs.koin.bom))
+            implementation(libs.koin.annotations)
+
+
             // put your Multiplatform dependencies here
         }
         commonTest.dependencies {
             implementation(libs.kotlin.test)
+            implementation(libs.koin.test)
         }
         jsMain.dependencies {
             implementation(libs.wrappers.browser)
         }
+        androidMain.dependencies {
+            implementation(libs.koin.android)
+        }
     }
 }
+
+
+
+
