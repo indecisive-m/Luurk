@@ -1,4 +1,4 @@
-package com.example.luurk.db
+package com.example.luurk.plugins.db
 
 data class DbConfig(
     val url: String,

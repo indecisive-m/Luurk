@@ -1,4 +1,4 @@
-package com.example.luurk.db
+package com.example.luurk.plugins.db
 
 import org.jetbrains.exposed.v1.r2dbc.R2dbcDatabase
 

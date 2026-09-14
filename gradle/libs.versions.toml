@@ -20,6 +20,8 @@ koinVersion = "4.2.2"
 koin-plugin = "1.2.1"
 postgres-r2dbc = "1.1.2.RELEASE"
 exposed = "1.5.0"
+kotlinx = "1.11.0"
+kotlinx-plugin = "2.4.20"
 
 
 [libraries]
@@ -46,12 +48,17 @@ ktor-serverNetty = { module = "io.ktor:ktor-server-netty-jvm", version.ref = "kt
 ktor-serverTestHost = { module = "io.ktor:ktor-server-test-host-jvm", version.ref = "ktor" }
 
 koin-bom = { module = "io.insert-koin:koin-bom", version.ref = "koinVersion" }
-koin-core = { module = "io.insert-koin:koin-core", version.ref = "koinVersion"}
-koin-test = { module = "io.insert-koin:koin-test", version.ref = "koinVersion"}
-koin-ktor = { module = "io.insert-koin:koin-ktor", version.ref = "koinVersion"}
-koin-android = { module = "io.insert-koin:koin-android", version.ref = "koinVersion"}
-koin-logger = { module = "io.insert-koin:koin-logger-slf4j", version.ref = "koinVersion"}
+koin-core = { module = "io.insert-koin:koin-core", version.ref = "koinVersion" }
+koin-test = { module = "io.insert-koin:koin-test", version.ref = "koinVersion" }
+koin-ktor = { module = "io.insert-koin:koin-ktor", version.ref = "koinVersion" }
+koin-android = { module = "io.insert-koin:koin-android", version.ref = "koinVersion" }
+koin-logger = { module = "io.insert-koin:koin-logger-slf4j", version.ref = "koinVersion" }
 koin-annotations = { module = "io.insert-koin:koin-annotations", version.ref = "koinVersion" }
+
+kotlinx-serialization = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "kotlinx" }
+kotlinx-json = { module = "io.ktor:ktor-serialization-kotlinx-json", version.ref = "ktor" }
+kotlin-content-negotiation = { module = "io.ktor:ktor-server-content-negotiation", version.ref = "ktor" }
+
 
 wrappers-browser = { module = "org.jetbrains.kotlin-wrappers:kotlin-browser", version.ref = "kotlin-wrappers" }
 postgres-r2dbc = { module = "org.postgresql:r2dbc-postgresql", version.ref = "postgres-r2dbc" }
@@ -70,6 +77,7 @@ kotlinJvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
 kotlinMultiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotlin" }
 ktor = { id = "io.ktor.plugin", version.ref = "ktor" }
 koin-compiler = { id = "io.insert-koin.compiler.plugin", version.ref = "koin-plugin" }
+kotlinx-serialization-plugin = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlinx-plugin" }
 
 [bundles]
 

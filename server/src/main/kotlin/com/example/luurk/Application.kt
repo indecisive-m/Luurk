@@ -1,8 +1,9 @@
 package com.example.luurk
 
-import com.example.luurk.db.DbConfig
-import com.example.luurk.di.appModule
 import com.example.luurk.domain.services.UserService
+import com.example.luurk.plugins.db.DbConfig
+import com.example.luurk.plugins.di.appModule
+import com.example.luurk.plugins.serialization.configureSerialization
 import io.ktor.server.application.Application
 import io.ktor.server.application.install
 import io.ktor.server.netty.EngineMain
@@ -23,11 +24,12 @@ fun Application.module() {
         driver = environment.config.property("ktor.database.driver").getString(),
         password = environment.config.property("ktor.database.password").getString(),
     )
-
-
     install(Koin) {
         modules(appModule(dbConfig = dbConfig))
     }
+
+    configureSerialization()
+
 
     val service by inject<UserService>()
 
