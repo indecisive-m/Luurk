@@ -1,13 +1,11 @@
-package com.example.luurk.data.services
+package com.example.luurk.features.auth
 
 import com.example.luurk.domain.models.User
-import com.example.luurk.domain.repository.UserRepository
-import com.example.luurk.domain.services.UserService
-import com.example.luurk.sayHello
+import com.example.luurk.features.user.UserRepository
 
-class UserServiceImpl(
+class AuthServiceImpl(
     private val userRepository: UserRepository
-) : UserService{
+) : AuthService {
     override suspend fun createUser(user: User) {
         userRepository.addUser(user)
     }

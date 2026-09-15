@@ -1,4 +1,4 @@
-package com.example.luurk.data.mappers
+package com.example.luurk.features.mappers
 
 import com.example.luurk.domain.models.User
 import com.example.luurk.plugins.db.UserTable.email

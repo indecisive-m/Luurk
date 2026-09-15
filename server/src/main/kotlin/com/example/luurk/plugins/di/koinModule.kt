@@ -1,9 +1,9 @@
 package com.example.luurk.plugins.di
 
-import com.example.luurk.data.repository.PostgresUserRepository
-import com.example.luurk.data.services.UserServiceImpl
-import com.example.luurk.domain.repository.UserRepository
-import com.example.luurk.domain.services.UserService
+import com.example.luurk.features.auth.AuthService
+import com.example.luurk.features.auth.AuthServiceImpl
+import com.example.luurk.features.user.PostgresUserRepository
+import com.example.luurk.features.user.UserRepository
 import com.example.luurk.plugins.db.DbConfig
 import com.example.luurk.plugins.db.createDatabase
 import org.koin.dsl.bind
@@ -17,6 +17,6 @@ fun appModule(dbConfig: DbConfig) = module {
     }
 
     single<PostgresUserRepository>() bind UserRepository::class
-    single<UserServiceImpl>() bind UserService::class
+    single<AuthServiceImpl>() bind AuthService::class
 
 }

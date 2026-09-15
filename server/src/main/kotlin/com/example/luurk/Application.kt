@@ -1,8 +1,10 @@
 package com.example.luurk
 
-import com.example.luurk.domain.services.UserService
+import com.example.luurk.domain.models.User
+import com.example.luurk.features.auth.AuthService
 import com.example.luurk.plugins.db.DbConfig
 import com.example.luurk.plugins.di.appModule
+import com.example.luurk.plugins.routing.configureRouting
 import com.example.luurk.plugins.serialization.configureSerialization
 import io.ktor.server.application.Application
 import io.ktor.server.application.install
@@ -16,7 +18,7 @@ import org.koin.ktor.plugin.Koin
 
 fun main(args: Array<String>): Unit = EngineMain.main(args)
 
-fun Application.module() {
+suspend fun Application.module() {
 
     val dbConfig = DbConfig(
         url = environment.config.property("ktor.database.url").getString(),
@@ -29,14 +31,16 @@ fun Application.module() {
     }
 
     configureSerialization()
+    configureRouting()
 
 
-    val service by inject<UserService>()
+    val service by inject<AuthService>()
 
 
 
     routing {
         get("/") {
+            call.respond(service.createUser(User(email = "jess@test.com")))
             call.respond(service.getAllUsers().forEach { println("${it.id} and ${it.email}") })
         }
     }

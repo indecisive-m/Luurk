@@ -1,8 +1,7 @@
-package com.example.luurk.data.repository
+package com.example.luurk.features.user
 
-import com.example.luurk.data.mappers.toDomain
 import com.example.luurk.domain.models.User
-import com.example.luurk.domain.repository.UserRepository
+import com.example.luurk.features.mappers.toDomain
 import com.example.luurk.plugins.db.UserTable
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.toList
