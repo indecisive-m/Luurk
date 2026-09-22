@@ -26,6 +26,7 @@ dependencies {
     implementation(libs.kotlinx.serialization)
     implementation(libs.kotlinx.json)
     implementation(libs.kotlin.content.negotiation)
+    implementation(libs.password4j)
 
 
     testImplementation(libs.ktor.serverTestHost)

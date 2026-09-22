@@ -19,6 +19,7 @@ class PostgresUserRepository(
         suspendTransaction(db = db) {
             UserTable.insert {
                 it[email] = user.email
+                it[password_hash] = user.passwordHash
             }
         }
     }
@@ -28,6 +29,5 @@ class PostgresUserRepository(
             UserTable.selectAll().map { it.toDomain() }.toList()
         }
     }
-
 
 }

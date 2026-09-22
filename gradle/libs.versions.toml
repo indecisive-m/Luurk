@@ -22,6 +22,7 @@ postgres-r2dbc = "1.1.2.RELEASE"
 exposed = "1.5.0"
 kotlinx = "1.11.0"
 kotlinx-plugin = "2.4.20"
+password4j = "1.8.4"
 
 
 [libraries]
@@ -65,6 +66,7 @@ postgres-r2dbc = { module = "org.postgresql:r2dbc-postgresql", version.ref = "po
 exposed-core = { module = "org.jetbrains.exposed:exposed-core", version.ref = "exposed" }
 exposed-r2dbc = { module = "org.jetbrains.exposed:exposed-r2dbc", version.ref = "exposed" }
 
+password4j = { module = "com.password4j:password4j", version.ref = "password4j" }
 
 
 
