@@ -67,6 +67,10 @@ exposed-core = { module = "org.jetbrains.exposed:exposed-core", version.ref = "e
 exposed-r2dbc = { module = "org.jetbrains.exposed:exposed-r2dbc", version.ref = "exposed" }
 
 password4j = { module = "com.password4j:password4j", version.ref = "password4j" }
+ktor-server-auth = { module = "io.ktor:ktor-server-auth", version.ref = "ktor" }
+ktor-server-jwt = { module = "io.ktor:ktor-server-auth-jwt", version.ref = "ktor" }
+
+
 
 
 
@@ -87,4 +91,10 @@ exposed = [
     "postgres-r2dbc",
     "exposed-core",
     "exposed-r2dbc"
+]
+
+ktor-auth = [
+    "password4j",
+    "ktor-server-auth",
+    "ktor-server-jwt"
 ]

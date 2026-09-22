@@ -28,8 +28,6 @@ suspend fun Application.module() {
         driver = environment.config.property("ktor.database.driver").getString(),
         password = environment.config.property("ktor.database.password").getString(),
     )
-
-
     configureSerialization()
     configureRouting()
     val database = createDatabase(dbConfig)
