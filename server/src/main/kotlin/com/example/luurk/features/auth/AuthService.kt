@@ -1,9 +1,11 @@
 package com.example.luurk.features.auth
 
-import com.example.luurk.domain.models.User
+import com.example.luurk.features.user.UserDto
 
 interface AuthService {
-    suspend fun createUser(user: User)
-    suspend fun getAllUsers(): List<User>
+    suspend fun signup(user: UserDto): SignupResult
+
+    suspend fun login(user: UserDto): LoginResult
+
 
 }

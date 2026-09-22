@@ -10,7 +10,6 @@ import com.example.luurk.plugins.serialization.configureSerialization
 import io.ktor.server.application.Application
 import io.ktor.server.application.install
 import io.ktor.server.netty.EngineMain
-import io.ktor.server.response.respond
 import io.ktor.server.routing.get
 import io.ktor.server.routing.routing
 import org.jetbrains.exposed.v1.r2dbc.SchemaUtils
@@ -48,9 +47,7 @@ suspend fun Application.module() {
     }
     routing {
         get("/") {
-            call.respond(
-                service.getAllUsers()
-                    .forEach { println("${it.id} and ${it.email} and ${it.passwordHash}") })
+
         }
     }
 }

@@ -1,8 +1,6 @@
 package com.example.luurk.features.auth
 
-import com.example.luurk.features.mappers.toUser
 import com.example.luurk.features.user.UserDto
-import com.password4j.Password
 import io.ktor.http.HttpStatusCode
 import io.ktor.server.application.Application
 import io.ktor.server.request.receive
@@ -19,26 +17,40 @@ suspend fun Application.authRoutes() {
     routing {
 
         route("/login") {
-//            post {
-//
-//            }
+            post {
+                val user = call.receive<UserDto>()
+
+                when (val response = authService.login(user)) {
+                    LoginResult.SUCCESS -> call.respondText(
+                        response.toString(),
+                        status = HttpStatusCode.OK
+                    )
+
+                    LoginResult.INVALID_CREDENTIALS -> call.respondText(
+                        response.toString(),
+                        status = HttpStatusCode.Unauthorized
+                    )
+                }
+
+
+            }
         }
         route("/signup") {
             post {
                 val user = call.receive<UserDto>()
 
-                val password = user.passwordHash
+                when (val response = authService.signup(user)) {
+                    SignupResult.CREATED -> call.respondText(
+                        response.toString(),
+                        status = HttpStatusCode.Created
+                    )
 
-                val hashedPassword = Password.hash(password).withArgon2()
+                    SignupResult.EMAIL_ALREADY_EXISTS -> call.respondText(
+                        response.toString(),
+                        status = HttpStatusCode.Conflict
+                    )
+                }
 
-                val newUser = UserDto(
-                    email = user.email,
-                    passwordHash = hashedPassword.result
-                )
-
-                authService.createUser(newUser.toUser())
-
-                call.respondText("Customer stored correctly", status = HttpStatusCode.Created)
 
             }
         }

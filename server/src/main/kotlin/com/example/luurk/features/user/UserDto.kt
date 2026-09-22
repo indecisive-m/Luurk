@@ -6,5 +6,5 @@ import kotlinx.serialization.Serializable
 data class UserDto(
     val id: Long? = null,
     val email: String,
-    val passwordHash: String
+    val password: String
 )

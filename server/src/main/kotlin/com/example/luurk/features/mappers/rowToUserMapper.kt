@@ -13,3 +13,4 @@ fun ResultRow.toDomain(): User {
         passwordHash = this[password_hash]
     )
 }
+

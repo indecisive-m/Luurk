@@ -7,6 +7,14 @@ fun UserDto.toUser(): User {
     return User(
         id = id,
         email = email,
-        passwordHash = passwordHash
+        passwordHash = password
+    )
+}
+
+fun User.toUserDto(): UserDto {
+    return UserDto(
+        id = id,
+        email = email,
+        password = passwordHash
     )
 }
