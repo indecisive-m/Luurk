@@ -5,13 +5,12 @@ import com.example.luurk.plugins.db.DbConfig
 import com.example.luurk.plugins.db.UserTable
 import com.example.luurk.plugins.db.createDatabase
 import com.example.luurk.plugins.di.appModule
+import com.example.luurk.plugins.jwt.configureJwt
 import com.example.luurk.plugins.routing.configureRouting
 import com.example.luurk.plugins.serialization.configureSerialization
 import io.ktor.server.application.Application
 import io.ktor.server.application.install
 import io.ktor.server.netty.EngineMain
-import io.ktor.server.routing.get
-import io.ktor.server.routing.routing
 import org.jetbrains.exposed.v1.r2dbc.SchemaUtils
 import org.jetbrains.exposed.v1.r2dbc.transactions.suspendTransaction
 import org.koin.ktor.ext.inject
@@ -29,24 +28,24 @@ suspend fun Application.module() {
         password = environment.config.property("ktor.database.password").getString(),
     )
     configureSerialization()
+    val jwtConfig = configureJwt()
     configureRouting()
+
     val database = createDatabase(dbConfig)
 
 
     val service by inject<AuthService>()
 
     install(Koin) {
-        modules(appModule(database))
+        modules(appModule(database, jwtConfig))
     }
 
 
     suspendTransaction {
         SchemaUtils.create(UserTable)
     }
-    routing {
-        get("/") {
-
-        }
-    }
 }
+
+
+
 

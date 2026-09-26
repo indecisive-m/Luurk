@@ -6,7 +6,8 @@ import com.example.luurk.features.user.UserRepository
 import com.password4j.Password
 
 class AuthServiceImpl(
-    private val userRepository: UserRepository
+    private val userRepository: UserRepository,
+    private val jwtService: JwtService
 ) : AuthService {
     override suspend fun signup(user: UserDto): SignupResult {
 
@@ -34,13 +35,15 @@ class AuthServiceImpl(
             val hashedPassword = Password.check(password, databaseUser.passwordHash).withArgon2()
 
             if (hashedPassword) {
-                LoginResult.SUCCESS
+                val token = jwtService.createToken(databaseUser.id)
+                LoginResult.Success(token)
+
             } else {
-                LoginResult.INVALID_CREDENTIALS
+                LoginResult.InvalidCredentials
             }
 
         } else {
-            LoginResult.INVALID_CREDENTIALS
+            LoginResult.InvalidCredentials
         }
     }
 
